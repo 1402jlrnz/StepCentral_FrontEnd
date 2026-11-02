@@ -1,0 +1,503 @@
+/* ============================================
+   STEP CENTRAL — Global Color Scheme
+   Sneaker aesthetic: Black / White / Red
+   ============================================ */
+:root {
+  /* Backgrounds */
+  --sc-bg: #0a0a0a;          /* Page background - rich black */
+  --sc-surface: #141414;     /* Cards / elevated surfaces */
+  --sc-surface-2: #1c1c1c;   /* Hover surfaces */
+  --sc-border: #262626;      /* Borders / dividers */
+
+  /* Text */
+  --sc-text: #fafafa;        /* Primary text */
+  --sc-text-muted: #a1a1aa;  /* Secondary text */
+  --sc-text-dim: #71717a;    /* Tertiary / hints */
+
+  /* Accent (red) */
+  --sc-accent: #ff3b3b;      /* Primary accent - vivid red */
+  --sc-accent-hover: #ff5757;/* Hover state */
+  --sc-accent-dark: #e02525; /* Pressed state */
+  --sc-accent-subtle: rgba(255, 59, 59, 0.12); /* Badges / glows */
+
+  /* Semantic (mapped to new scheme) */
+  --sc-success: #22c55e;
+  --sc-danger: #ef4444;
+  --sc-warning: #f59e0b;
+
+  /* Legacy aliases — so old rules keep working */
+  --sc-navy: var(--sc-bg);
+  --sc-gold: var(--sc-accent);
+
+  /* Typography */
+  --sc-font: 'Amazon Ember', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  --sc-font-display: 'Arial Black', 'Amazon Ember', Impact, sans-serif;
+}
+
+/* Apply base colors to html/body */
+html,
+body {
+  background-color: var(--sc-bg);
+  color: var(--sc-text);
+  font-family: var(--sc-font);
+}
+
+/* Dark scrollbar to match */
+::-webkit-scrollbar-track {
+  background-color: #161616;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #161616;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 59, 59, 0.35);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 59, 59, 0.6);
+}
+
+/* Navbar */
+nav {
+  background-color: #101010 !important;
+  border-bottom: 1px solid var(--sc-border);
+}
+
+/* === Search bar — theme matched === */
+.input-group {
+  width: 90%;
+  margin-right: 35%;
+}
+
+#search_field {
+  height: 2.6rem;
+  padding: 0.4rem 1.1rem;
+  background-color: var(--sc-surface);
+  border: 1px solid var(--sc-border);
+  border-right: none;
+  border-radius: 0.5rem 0 0 0.5rem;
+  color: var(--sc-text);
+  font-family: var(--sc-font);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  box-shadow: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#search_field::placeholder {
+  color: var(--sc-text-dim);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+#search_field:focus {
+  background-color: var(--sc-surface);
+  border-color: var(--sc-accent);
+  color: var(--sc-text);
+  box-shadow: 0 0 0 3px rgba(255, 59, 59, 0.15);
+  outline: none;
+}
+
+.input-group-append .btn {
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 0.4rem 1.1rem;
+}
+
+/* Brand text */
+.navbar-brand span {
+  font-family: var(--sc-font);
+  letter-spacing: -0.01em;
+}
+
+/* Cart link in navbar */
+.cart-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+#cart {
+  color: var(--sc-text) !important;
+  font-size: 1.3rem;
+  line-height: 1;
+  transition: color 0.2s ease, transform 0.15s ease;
+}
+
+.cart-link:hover #cart {
+  color: var(--sc-accent) !important;
+  transform: scale(1.1);
+}
+
+#cart_count {
+  background-color: var(--sc-accent) !important;
+  color: #fff !important;
+  border-radius: 999px;
+  padding: 0.1rem 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  min-width: 1.25rem;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Product details back button */
+#back_btn {
+  border-color: var(--sc-border);
+  color: var(--sc-text-muted);
+  background-color: transparent;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.35rem 1rem;
+  transition: all 0.2s ease;
+}
+
+#back_btn:hover {
+  background-color: var(--sc-surface-2);
+  border-color: var(--sc-accent);
+  color: var(--sc-accent);
+}
+
+/* User dropdown toggle */
+.dropdown-toggle {
+  color: var(--sc-text) !important;
+}
+
+#search_btn {
+  background-color: var(--sc-accent) !important;
+  border-color: var(--sc-accent) !important;
+  color: #fff !important;
+}
+
+/* Buttons that used gold */
+#login_btn,
+#view_btn,
+.wrapper form .btn,
+.update-btn,
+#checkout_btn,
+.review-btn,
+#edit_profile,
+#cart_btn,
+#shipping_btn,
+#pay_btn,
+.page-item.active .page-link,
+.btn-primary {
+  background-color: var(--sc-accent) !important;
+  border-color: var(--sc-accent) !important;
+  color: #fff !important;
+}
+
+#login_btn:hover,
+#view_btn:hover,
+.wrapper form .btn:hover,
+.update-btn:hover,
+#checkout_btn:hover,
+.review-btn:hover,
+#cart_btn:hover,
+.btn-primary:hover {
+  background-color: var(--sc-accent-hover) !important;
+  border-color: var(--sc-accent-hover) !important;
+}
+
+/* Links that used orange */
+.card-title a:hover {
+  color: var(--sc-accent) !important;
+}
+
+.page-link {
+  color: var(--sc-accent) !important;
+}
+
+/* Text colors */
+#product_price {
+  color: var(--sc-accent) !important;
+}
+
+/* MUI Pagination active overrides (kept for safety) */
+.page-item.active .page-link {
+  background-color: var(--sc-accent) !important;
+  border-color: var(--sc-accent) !important;
+}
+
+/* Footer */
+footer {
+  background-color: #101010;
+  border-top: 1px solid var(--sc-border);
+  color: var(--sc-text-muted);
+}
+
+/* ============================================
+   HERO SECTION — Design-only brand statement
+   ============================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Layer 1: base gradient */
+.hero-bg-base {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 50% 40%, #1a1a1a 0%, #0a0a0a 65%),
+    linear-gradient(180deg, #0a0a0a 0%, #101010 100%);
+}
+
+/* Layer 2: noise texture */
+.hero-bg-noise {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.05;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Layer 3: organic curved lines (red accent) */
+.hero-bg-curves {
+  position: absolute;
+  inset: -10%;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.6;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 800' preserveAspectRatio='none'%3E%3Cpath d='M0,400 C400,600 800,200 1440,400 L1440,800 L0,800 Z' fill='none' stroke='%23ff3b3b' stroke-width='2.5' opacity='0.15'/%3E%3Cpath d='M0,500 C400,300 800,700 1440,500 L1440,800 L0,800 Z' fill='none' stroke='%23ff3b3b' stroke-width='1.5' opacity='0.1'/%3E%3Cpath d='M0,350 C500,150 900,650 1440,350' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.06'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center;
+  animation: curveDrift 22s ease-in-out infinite;
+}
+
+@keyframes curveDrift {
+  0%, 100% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.04) translate(-1%, -1%); }
+}
+
+/* Split typography */
+.hero-headline {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 4;
+  pointer-events: none;
+  padding: 0 5%;
+}
+
+.hero-word {
+  font-size: clamp(72px, 14vw, 200px);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  font-family: 'Arial Black', 'Amazon Ember', sans-serif;
+  user-select: none;
+}
+
+.hero-word--accent {
+  color: var(--sc-accent);
+  text-shadow: 0 0 80px rgba(255, 59, 59, 0.25);
+}
+
+.hero-word--white {
+  color: var(--sc-text);
+  margin-top: -0.06em;
+  opacity: 0.95;
+}
+
+/* Ghost monogram behind silhouette */
+.hero-brand-ghost {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  z-index: 3;
+  font-size: clamp(200px, 34vw, 520px);
+  font-weight: 900;
+  font-family: 'Arial Black', sans-serif;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.045);
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.05em;
+}
+
+/* Sneaker silhouette */
+.hero-silhouette {
+  position: absolute;
+  bottom: 16%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  width: 62%;
+  max-width: 620px;
+  color: #fff;
+  opacity: 0.1;
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.8));
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0) rotate(-2deg); }
+  50% { transform: translateX(-50%) translateY(-18px) rotate(-2deg); }
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--sc-accent);
+  opacity: 0.75;
+  font-size: 11px;
+  letter-spacing: 0.35em;
+  font-weight: 700;
+  text-transform: uppercase;
+  animation: bounce 2.2s ease-in-out infinite;
+}
+
+.scroll-indicator svg {
+  width: 22px;
+  height: 22px;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
+}
+
+/* ============================================
+   HERO — Responsive
+   ============================================ */
+@media (max-width: 1023px) {
+  .hero { min-height: 88vh; }
+  .hero-silhouette { width: 78%; opacity: 0.08; }
+  .hero-brand-ghost { -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.04); }
+}
+
+@media (max-width: 767px) {
+  .hero { min-height: 76vh; }
+  .hero-word { font-size: clamp(52px, 18vw, 110px); }
+  .hero-silhouette { display: none; }
+  .hero-brand-ghost { font-size: 60vw; }
+  .scroll-indicator { bottom: 18px; font-size: 10px; letter-spacing: 0.25em; }
+}
+
+/* ============================================
+   Products section tuning for dark theme
+   ============================================ */
+#products_heading {
+  color: var(--sc-text);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.card {
+  background-color: var(--sc-surface);
+  border: 1px solid var(--sc-border);
+}
+
+.card-title a {
+  color: var(--sc-text) !important;
+}
+
+.card-title a:hover {
+  color: var(--sc-accent) !important;
+}
+
+.card-text {
+  color: var(--sc-accent) !important;
+}
+
+.ratings {
+  color: var(--sc-accent) !important;
+}
+
+#no_of_reviews {
+  color: var(--sc-text-muted) !important;
+}
+
+/* Sidebar filters */
+h4 {
+  color: var(--sc-text);
+}
+
+ul li {
+  color: var(--sc-text-muted);
+}
+
+ul li:hover {
+  color: var(--sc-text);
+}
+
+.btn-secondary {
+  background-color: var(--sc-surface-2);
+  border-color: var(--sc-border);
+  color: var(--sc-text);
+}
+
+.btn-outline-danger {
+  border-color: var(--sc-accent);
+  color: var(--sc-accent);
+}
+
+.btn-outline-success {
+  border-color: var(--sc-success);
+  color: var(--sc-success);
+}
+
+/* Dropdown / user menu */
+.dropdown-menu {
+  background-color: var(--sc-surface);
+  border: 1px solid var(--sc-border);
+}
+
+.dropdown-item {
+  color: var(--sc-text);
+}
+
+.dropdown-item:hover {
+  background-color: var(--sc-surface-2);
+  color: var(--sc-text);
+}
+
+/* Loader / headings */
+h1, h2, h3, h5 {
+  color: var(--sc-text);
+}
+
+p {
+  color: var(--sc-text-muted);
+}
+
+/* Stock status */
+.greenColor { color: var(--sc-success) !important; }
+.redColor { color: var(--sc-accent) !important; }
+
+/* Star rating (reviews) */
+.star-rating .star {
+  color: #3f3f46;
+}
+.star-rating .star.filled {
+  color: var(--sc-accent);
+}
+.review-card {
+  background-color: var(--sc-surface);
+  border: 1px solid var(--sc-border) !important;
+}

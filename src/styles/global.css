@@ -1,0 +1,407 @@
+/* ============================================================
+   STEP CENTRAL — GLOBAL DESIGN SYSTEM
+   Single source of truth for the dark / black / red aesthetic.
+   Loaded in main.jsx AFTER App.css so these rules win the cascade
+   and the theme applies to EVERY page (not just Home).
+
+   Design language: "Liquid Glass" on a rich-black canvas with a
+   vivid-red accent. Montserrat display type. 8px spacing rhythm.
+   ============================================================ */
+
+/* ---------- 1. DESIGN TOKENS ---------- */
+:root {
+  /* Canvas / surfaces */
+  --sc-bg: #0a0a0a;            /* page background - rich black */
+  --sc-surface: #141414;       /* cards / elevated surfaces */
+  --sc-surface-2: #1c1c1c;     /* hover surfaces */
+  --sc-border: #262626;        /* borders / dividers */
+
+  /* Glass material (translucent + blur) */
+  --sc-glass: rgba(20, 20, 20, 0.6);
+  --sc-glass-2: rgba(28, 28, 28, 0.72);
+  --sc-glass-border: rgba(255, 255, 255, 0.08);
+  --sc-blur: blur(14px);
+
+  /* Text */
+  --sc-text: #fafafa;          /* primary text */
+  --sc-text-muted: #a1a1aa;    /* secondary text */
+  --sc-text-dim: #71717a;      /* tertiary / hints */
+
+  /* Accent (red) */
+  --sc-accent: #ff3b3b;        /* primary accent - vivid red */
+  --sc-accent-hover: #ff5757;  /* hover state */
+  --sc-accent-dark: #e02525;   /* pressed state */
+  --sc-accent-subtle: rgba(255, 59, 59, 0.12); /* badges / glows */
+  --sc-accent-glow: rgba(255, 59, 59, 0.35);
+
+  /* Semantic */
+  --sc-success: #22c55e;
+  --sc-danger: #ef4444;
+  --sc-warning: #f59e0b;
+
+  /* Legacy aliases — so old rules keep working */
+  --sc-navy: var(--sc-bg);
+  --sc-gold: var(--sc-accent);
+
+  /* Typography */
+  --sc-font: 'Montserrat', 'Amazon Ember', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  --sc-font-display: 'Montserrat', 'Arial Black', Impact, sans-serif;
+
+  /* Spacing rhythm (8px) */
+  --sc-space-1: 0.25rem;  /* 4 */
+  --sc-space-2: 0.5rem;   /* 8 */
+  --sc-space-3: 1rem;     /* 16 */
+  --sc-space-4: 1.5rem;   /* 24 */
+  --sc-space-5: 2rem;     /* 32 */
+  --sc-space-6: 3rem;     /* 48 */
+  --sc-space-7: 4rem;     /* 64 */
+
+  /* Radii */
+  --sc-radius-sm: 8px;
+  --sc-radius: 12px;
+  --sc-radius-lg: 16px;
+  --sc-radius-xl: 24px;
+
+  /* Elevation */
+  --sc-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --sc-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --sc-shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.6);
+  --sc-shadow-accent: 0 8px 28px var(--sc-accent-glow);
+
+  /* Motion (150-300ms, ease-out) */
+  --sc-tint: 180ms;
+  --sc-tout: 220ms;
+  --sc-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --sc-transition: all var(--sc-tout) var(--sc-ease);
+}
+
+/* ---------- 2. BASE ---------- */
+html,
+body {
+  background-color: var(--sc-bg);
+  color: var(--sc-text);
+  font-family: var(--sc-font);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--sc-accent);
+  color: #fff;
+}
+
+/* Dark scrollbar to match */
+::-webkit-scrollbar-track { background-color: #161616; }
+::-webkit-scrollbar { width: 8px; background-color: #161616; }
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 59, 59, 0.35);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover { background-color: rgba(255, 59, 59, 0.6); }
+
+/* Global headings + paragraph */
+h1, h2, h3, h4, h5, h6 { color: var(--sc-text); }
+p { color: var(--sc-text-muted); }
+
+/* ---------- 3. ACCESSIBILITY ---------- */
+/* Visible focus ring for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--sc-accent) !important;
+  outline-offset: 2px;
+}
+
+/* Cursor affordance on interactive elements */
+a, button, .btn, [role='button'], .card-title a,
+.dropdown-item, .page-link, li[style*='cursor'] {
+  cursor: pointer;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- 4. NAVBAR ---------- */
+nav {
+  background-color: rgba(12, 12, 12, 0.85) !important;
+  backdrop-filter: var(--sc-blur);
+  -webkit-backdrop-filter: var(--sc-blur);
+  border-bottom: 1px solid var(--sc-border);
+}
+
+.navbar-brand span {
+  font-family: var(--sc-font-display);
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+/* Search bar */
+.input-group { width: 90%; margin-right: 35%; }
+
+#search_field {
+  height: 2.6rem;
+  padding: 0.4rem 1.1rem;
+  background-color: var(--sc-surface);
+  border: 1px solid var(--sc-border);
+  border-right: none;
+  border-radius: var(--sc-radius-sm) 0 0 var(--sc-radius-sm);
+  color: var(--sc-text);
+  font-family: var(--sc-font);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  box-shadow: none;
+  transition: border-color var(--sc-tint) ease, box-shadow var(--sc-tint) ease;
+}
+#search_field::placeholder {
+  color: var(--sc-text-dim);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+#search_field:focus {
+  background-color: var(--sc-surface);
+  border-color: var(--sc-accent);
+  color: var(--sc-text);
+  box-shadow: 0 0 0 3px rgba(255, 59, 59, 0.15);
+  outline: none;
+}
+.input-group-append .btn { border-radius: 0 var(--sc-radius-sm) var(--sc-radius-sm) 0; padding: 0.4rem 1.1rem; }
+
+#search_btn {
+  background-color: var(--sc-accent) !important;
+  border-color: var(--sc-accent) !important;
+  color: #fff !important;
+}
+#search_btn:hover { background-color: var(--sc-accent-hover) !important; }
+
+/* Cart link */
+.cart-link { display: inline-flex; align-items: center; gap: 0.35rem; }
+#cart {
+  color: var(--sc-text) !important;
+  font-size: 1.3rem;
+  line-height: 1;
+  transition: color var(--sc-tint) ease, transform 0.15s ease;
+}
+.cart-link:hover #cart { color: var(--sc-accent) !important; transform: scale(1.1); }
+#cart_count {
+  background-color: var(--sc-accent) !important;
+  color: #fff !important;
+  border-radius: 999px;
+  padding: 0.1rem 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  min-width: 1.25rem;
+  display: inline-block;
+  text-align: center;
+}
+
+/* User dropdown toggle */
+.dropdown-toggle { color: var(--sc-text) !important; }
+
+/* ---------- 5. BUTTONS (primary accent) ---------- */
+#login_btn,
+#view_btn,
+.wrapper form .btn,
+.update-btn,
+#checkout_btn,
+.review-btn,
+#cart_btn,
+#review_btn,
+#edit_profile,
+#shipping_btn,
+#pay_btn,
+#view_order_details,
+.page-item.active .page-link,
+.btn-primary {
+  background-color: var(--sc-accent) !important;
+  border-color: var(--sc-accent) !important;
+  color: #fff !important;
+  transition: var(--sc-transition);
+}
+#login_btn:hover,
+#view_btn:hover,
+.wrapper form .btn:hover,
+.update-btn:hover,
+#checkout_btn:hover,
+.review-btn:hover,
+#cart_btn:hover,
+#review_btn:hover,
+#edit_profile:hover,
+#shipping_btn:hover,
+#pay_btn:hover,
+#view_order_details:hover,
+.btn-primary:hover {
+  background-color: var(--sc-accent-hover) !important;
+  border-color: var(--sc-accent-hover) !important;
+  box-shadow: var(--sc-shadow-accent);
+}
+
+/* Secondary / outline buttons themed to the dark canvas */
+.btn-secondary {
+  background-color: var(--sc-surface-2) !important;
+  border-color: var(--sc-border) !important;
+  color: var(--sc-text) !important;
+}
+.btn-secondary:hover { background-color: #262626 !important; border-color: var(--sc-accent) !important; color: var(--sc-text) !important; }
+.btn-outline-danger { border-color: var(--sc-accent); color: var(--sc-accent); }
+.btn-outline-success { border-color: var(--sc-success); color: var(--sc-success); }
+
+/* ---------- 6. FOOTER ---------- */
+footer {
+  margin-top: 8rem;
+  width: 100%;
+  background-color: #0c0c0c;
+  border-top: 1px solid var(--sc-border);
+  color: var(--sc-text-muted);
+}
+
+/* ---------- 7. CARDS / PRODUCTS ---------- */
+.card {
+  background-color: var(--sc-surface);
+  border: 1px solid var(--sc-border);
+  border-radius: var(--sc-radius-lg);
+}
+.card-title a { color: var(--sc-text) !important; }
+.card-title a:hover { color: var(--sc-accent) !important; }
+.card-text { color: var(--sc-accent) !important; }
+.ratings { color: var(--sc-accent) !important; }
+#no_of_reviews { color: var(--sc-text-muted) !important; }
+
+/* Price accent */
+#product_price { color: var(--sc-accent) !important; }
+#card_item_price { color: var(--sc-accent) !important; font-weight: bold; font-size: 1.4rem; }
+
+/* Loader */
+.loader:after {
+  border-color: var(--sc-accent) transparent;
+}
+
+/* ---------- 8. SIDEBAR FILTERS ---------- */
+h4 { color: var(--sc-text); }
+ul li { color: var(--sc-text-muted); transition: color var(--sc-tint) ease; }
+ul li:hover { color: var(--sc-text); }
+
+/* ---------- 9. DROPDOWN / USER MENU ---------- */
+.dropdown-menu {
+  background-color: var(--sc-surface);
+  border: 1px solid var(--sc-border);
+  border-radius: var(--sc-radius);
+  box-shadow: var(--sc-shadow);
+}
+.dropdown-item { color: var(--sc-text); transition: background-color var(--sc-tint) ease, color var(--sc-tint) ease; }
+.dropdown-item:hover { background-color: var(--sc-surface-2); color: var(--sc-text); }
+
+/* ---------- 10. ORDER SUMMARY / CART ---------- */
+#order_summary {
+  border: 1px solid var(--sc-border);
+  border-radius: var(--sc-radius-lg);
+  padding: 2rem 1.5rem;
+  background-color: var(--sc-surface);
+}
+
+#delete_cart_item {
+  color: var(--sc-accent);
+  background: var(--sc-surface-2);
+  border: 1px solid var(--sc-border);
+  padding: 0.3rem 0.5rem;
+  font-size: 1.1rem;
+  border-radius: var(--sc-radius-sm);
+  transition: var(--sc-transition);
+}
+#delete_cart_item:hover { border-color: var(--sc-accent); }
+
+.cart-item a { color: var(--sc-text-muted); }
+
+/* ---------- 11. CHECKOUT STEPS ---------- */
+.checkout-progress { font-family: var(--sc-font); }
+.step { color: var(--sc-text-dim); font-weight: bold; letter-spacing: 1px; }
+.incomplete { background: var(--sc-surface-2); }
+.active-step { background: var(--sc-accent); color: #fff; }
+.triangle-active { border-left: 15px solid var(--sc-accent); }
+.triangle2-active { border-top: 20px solid var(--sc-accent); border-left: 15px solid var(--sc-bg); border-bottom: 20px solid var(--sc-accent); }
+.triangle-incomplete { border-left: 15px solid var(--sc-surface-2); }
+.triangle2-incomplete { border-top: 20px solid var(--sc-surface-2); border-left: 15px solid var(--sc-bg); border-bottom: 20px solid var(--sc-surface-2); }
+
+/* ---------- 12. FORMS ---------- */
+.form-control {
+  background-color: var(--sc-surface);
+  border-color: var(--sc-border);
+  color: var(--sc-text);
+}
+.form-control:focus {
+  background-color: var(--sc-surface);
+  border-color: var(--sc-accent);
+  color: var(--sc-text);
+  box-shadow: 0 0 0 3px rgba(255, 59, 59, 0.15);
+}
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: var(--sc-surface-2);
+  color: var(--sc-text-muted);
+}
+
+/* ---------- 13. LOGIN / REGISTER WRAPPER ---------- */
+.wrapper form .btn { margin-top: 2.5rem; }
+.wrapper form a { font-size: 0.9rem; color: var(--sc-text-muted); }
+.wrapper form a:hover { color: var(--sc-accent); }
+
+/* ---------- 14. PROFILE ---------- */
+.user-info h4 { font-weight: 800; color: var(--sc-text-muted); }
+#edit_profile { background-color: var(--sc-accent); border-color: var(--sc-accent); }
+
+/* ---------- 15. ADMIN SIDEBAR ---------- */
+#sidebar {
+  min-width: 100%;
+  max-width: 100%;
+  background: #0c0c0c;
+  color: #fff;
+  transition: all 0.3s;
+}
+#sidebar .sidebar-header { padding: 20px; background: #0c0c0c; border-bottom: 1px solid var(--sc-border); }
+#sidebar ul.components { padding: 5px 0; border-bottom: 1px solid var(--sc-border); }
+#sidebar ul li a {
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+  color: var(--sc-text);
+  text-decoration: none;
+  transition: var(--sc-transition);
+}
+#sidebar ul li a:hover { color: #fff; background: var(--sc-accent); }
+#sidebar ul li.active > a, a[aria-expanded='true'] { color: #fff; background: var(--sc-surface-2); }
+ul ul a { font-size: 1rem !important; padding-left: 30px !important; background: transparent; }
+
+/* ---------- 16. STAR RATINGS (review composer + display) ---------- */
+.rating-outer { color: var(--sc-text-dim); }
+.rating-inner::before { color: var(--sc-accent); }
+.star { color: var(--sc-surface-2); }
+.orange, .yellow { color: var(--sc-accent); }
+
+.star-rating .star { color: #3f3f46; transition: color var(--sc-tint) ease, text-shadow var(--sc-tint) ease; }
+.star-rating .star.filled { color: var(--sc-accent); }
+.star-rating .star:hover { color: var(--sc-accent-hover); text-shadow: 0 0 14px rgba(255, 59, 59, 0.55); }
+
+.review-card {
+  background-color: var(--sc-surface);
+  border: 1px solid var(--sc-border) !important;
+  border-radius: var(--sc-radius);
+}
+.review-rating .text-warning { color: var(--sc-accent) !important; }
+
+/* ---------- 17. STATUS / STATE HELPERS ---------- */
+.greenColor { color: var(--sc-success) !important; }
+.redColor { color: var(--sc-accent) !important; }
+.orangeColor { color: var(--sc-warning) !important; }

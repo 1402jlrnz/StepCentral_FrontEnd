@@ -1,0 +1,211 @@
+import { useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { Header } from './Components/Layout/Header'
+import Footer from './Components/Layout/Footer'
+
+import './App.css'
+import Home from './Components/Home'
+import ProductDetails from './Components/Product/ProductDetails';
+import Login from './Components/User/Login';
+import Register from './Components/User/Register';
+import Profile from './Components/User/Profile';
+import UpdateProfile from './Components/User/UpdateProfile';
+import UpdatePassword from './Components/User/UpdatePassword';
+import ForgotPassword from './Components/User/ForgotPassword';
+import NewPassword from './Components/User/NewPassword';
+import ProtectedRoute from './Components/Route/ProtectedRoute';
+
+import ProductsList from './Components/Admin/ProductsList';
+import NewProduct from './Components/Admin/NewProduct';
+import UpdateProduct from './Components/Admin/UpdateProduct';
+import Dashboard from './Components/Admin/Dashboard';
+import AdminOrders from './Components/Admin/AdminOrders';
+import AdminReviews from './Components/Admin/AdminReviews';
+import AdminUsers from './Components/Admin/AdminUsers';
+
+import Cart from './Components/Cart/Cart';
+import Shipping from './Components/Cart/Shipping';
+import ConfirmOrder from './Components/Cart/ConfirmOrder';
+import Payment from './Components/Cart/Payment';
+import OrderSuccess from './Components/Cart/OrderSuccess';
+import ListOrders from './Components/Order/ListOrders';
+import OrderDetails from './Components/Order/OrderDetails';
+
+import { useDispatch } from 'react-redux'
+import { loadUser } from './actions/userActions'
+
+function App() {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(loadUser())
+  }, [dispatch])
+
+  return (
+    <>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} exact="true" />
+          <Route path="/product/:id" element={<ProductDetails />} exact="true" />
+
+          <Route path="/search/:keyword" element={<Home />} exact="true" />
+          <Route path="/login" element={<Login />} exact="true" />
+          <Route path="/register" element={<Register />} exact="true" />
+          <Route path="/password/forgot" element={<ForgotPassword />} exact="true" />
+          <Route path="/password/reset/:token" element={<NewPassword />} exact="true" />
+
+          <Route
+            path="/me"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/me/update"
+            element={
+              <ProtectedRoute>
+                <UpdateProfile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/password/update"
+            element={
+              <ProtectedRoute>
+                <UpdatePassword />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/cart"
+            element={
+              <ProtectedRoute>
+                <Cart />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/shipping"
+            element={
+              <ProtectedRoute>
+                <Shipping />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/confirm"
+            element={
+              <ProtectedRoute>
+                <ConfirmOrder />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/payment"
+            element={
+              <ProtectedRoute>
+                <Payment />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/success"
+            element={
+              <ProtectedRoute>
+                <OrderSuccess />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/orders/me"
+            element={
+              <ProtectedRoute>
+                <ListOrders />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/order/:id"
+            element={
+              <ProtectedRoute>
+                <OrderDetails />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/orders"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <AdminOrders />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/users"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <AdminUsers />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/reviews"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <AdminReviews />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/products"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <ProductsList />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/product"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <NewProduct />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/product/:id"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <UpdateProduct />
+              </ProtectedRoute>
+            }
+          />
+
+        </Routes>
+
+
+      </Router>
+      <Footer />
+      <ToastContainer />
+    </>
+  )
+}
+
+export default App
