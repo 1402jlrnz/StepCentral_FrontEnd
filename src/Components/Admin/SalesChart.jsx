@@ -114,7 +114,7 @@ const SalesChart = () => {
                     sales.length === 0 ? (
                         <p className="text-muted text-center">No sales found in this date range.</p>
                     ) : (
-                        <ResponsiveContainer width="100%" height={450}>
+                        <ResponsiveContainer width="100%" height={320}>
                             {chartType === 'line' ? (
                                 <LineChart data={sales} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
                                     <CartesianGrid strokeDasharray="3 3" stroke="#3f3f46" />

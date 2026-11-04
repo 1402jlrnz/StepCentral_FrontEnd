@@ -51,8 +51,8 @@ export default function ProductSalesChart() {
             </div>
             <div className="card-body">
                 {loading ? <Loader /> : (
-                    <ResponsiveContainer width="100%" height={500}>
-                        <PieChart width={500} height={500}>
+                    <ResponsiveContainer width="100%" height={320}>
+                        <PieChart>
                             <Pie
                                 dataKey="percent"
                                 nameKey="name"
@@ -60,7 +60,7 @@ export default function ProductSalesChart() {
                                 data={sales}
                                 cx="50%"
                                 cy="50%"
-                                outerRadius={150}
+                                outerRadius={105}
                                 label={renderCustomizedLabel}
                                 labelLine={false}
                             >

@@ -139,24 +139,25 @@ const Dashboard = () => {
                                         </Grid>
                                     ))}
                                 </Grid>
+                                <Grid container spacing={2.5} sx={{ mt: 1 }}>
+                                    <Grid item xs={12} lg={6}>
+                                        <SalesChart />
+                                    </Grid>
+                                    <Grid item xs={12} lg={6}>
+                                        <ProductSalesChart />
+                                    </Grid>
+                                    <Grid item xs={12} lg={6}>
+                                        <UserSalesChart />
+                                    </Grid>
+                                    <Grid item xs={12} lg={6}>
+                                        <MonthlySalesChart />
+                                    </Grid>
+                                </Grid>
                             </Box>
                         </>
                     )}
                 </div>
             </div>
-
-            <Box sx={{ mt: 4 }}>
-                <SalesChart />
-            </Box>
-            <Box sx={{ mt: 4 }}>
-                <ProductSalesChart />
-            </Box>
-            <Box sx={{ mt: 4 }}>
-                <UserSalesChart />
-            </Box>
-            <Box sx={{ mt: 4 }}>
-                <MonthlySalesChart />
-            </Box>
         </>
     )
 }

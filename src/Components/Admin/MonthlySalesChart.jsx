@@ -30,7 +30,7 @@ export default function MonthlySalesChart() {
             </div>
             <div className="card-body">
                 {loading ? <Loader /> : (
-                    <ResponsiveContainer width="100%" height={500}>
+                    <ResponsiveContainer width="100%" height={320}>
                         <LineChart data={sales} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="month" tick={{ fontSize: 11 }} />
